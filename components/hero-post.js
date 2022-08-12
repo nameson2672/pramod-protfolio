@@ -1,8 +1,21 @@
-import Avatar from '../components/avatar'
-import Date from '../components/date'
-import CoverImage from '../components/cover-image'
-import Link from 'next/link'
-import { imageBuilder } from '../lib/sanity'
+import Image from "next/image";
+import {
+  Box,
+  Center,
+  Heading,
+  Text,
+  Stack,
+  Link,
+  Avatar,
+  useColorModeValue,
+  scaleFadeConfig,
+} from "@chakra-ui/react";
+import { imageBuilder } from "../lib/sanity";
+import { PortableText } from "@portabletext/react";
+import Date from "./date";
+import NextLink from 'next/link'
+import { transform } from "framer-motion";
+import BlogCatogery from "./hero-post-tag";
 
 export default function HeroPost({
   title,
@@ -11,62 +24,73 @@ export default function HeroPost({
   excerpt,
   author,
   slug,
+  categories
 }) {
+  const authorUrl = "author/"+ author.slug.current
+  let url = imageBuilder(coverImage).url();
   return (
-    // <section>
-    //   <div classNameName="mb-8 md:mb-16">
-    //     <CoverImage slug={slug} imageObject={coverImage} title={title} url={coverImage} />
-    //   </div>
-    //   <div classNameName="md:grid md:grid-cols-2 md:col-gap-16 lg:col-gap-8 mb-20 md:mb-28">
-    //     <div>
-    //       <h3 classNameName="mb-4 text-4xl lg:text-6xl leading-tight">
-    //         <Link as={`/posts/${slug}`} href="/posts/[slug]">
-    //           <a classNameName="hover:underline">{title}</a>
-    //         </Link>
-    //       </h3>
-    //       <div classNameName="mb-4 md:mb-0 text-lg">
-    //         <Date dateString={date} />
-    //       </div>
-    //     </div>
-    //     <div>
-    //       <p classNameName="text-lg leading-relaxed mb-4">{excerpt}</p>
-    //       <Avatar name={author?.name} picture={author?.picture} />
-    //     </div>
-    //   </div>
-    // </section>
-
-   
-<div className="mx-auto px-4 py-8 max-w-xl my-20">
-        <div className="bg-white shadow-2xl rounded-lg mb-6 tracking-wide" >
-            <div className="md:flex-shrink-0">
-                <img src={imageBuilder(coverImage).url()} alt="mountains" className="w-full h-64 object-cover rounded-lg rounded-b-none"/>
-            </div>
-            <div className="px-4 py-2 mt-2">
-                <h2 className="font-bold text-2xl text-gray-800 tracking-normal">{title}</h2>
-                    <p className="text-sm text-gray-700 px-2 mr-1">
-                    {excerpt}
-                    </p>
-                    <div className="flex items-center justify-between mt-2 mx-6">
-                        <a href="#" className="text-blue-500 text-xs -ml-3 ">Show More</a>
-                        <a href="#" className="flex text-gray-700">
-                            <svg fill="none" viewBox="0 0 24 24" className="w-6 h-6 text-blue-500" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
-                            </svg>
-                            5
-                        </a>
-                    </div>
-                <div className="author flex items-center -ml-3 my-3">
-                    <div className="user-logo">
-                        <img className="w-12 h-12 object-cover rounded-full mx-4  shadow" src={author?.picture} alt="avatar"/>
-                    </div>
-                    <h2 className="text-base  tracking-tighter text-gray-900">
-                        <a href="#">{author?.name}</a> <span className="text-gray-600"><Date dateString={date}/>.</span>
-                    </h2>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-  )
+    <NextLink href={"/posts/" + slug} passHref>
+      <Center py={6}>
+        <Box
+          maxW={"445px"}
+          w={"full"}
+          bg={useColorModeValue("white", "gray.900")}
+          boxShadow={"xl"}
+          rounded={"md"}
+          p={6}
+          overflow={"hidden"}
+          cursor={"pointer"}
+          transition={"0.2s all ease-in-out"}
+          _hover={{transform: "scale(1.02)", boxShadow:"2xl"}}
+        >
+          <Box
+            h={"210px"}
+            bg={"gray.100"}
+            mt={-6}
+            mx={-6}
+            mb={6}
+            pos={"relative"}
+            transition={"0.3s all ease-in-out"}
+            _hover={{ transform: 'scale(1.1)'}}
+          >
+            <Image
+              src={url}
+              layout={"fill"}
+              cursor={"pointer"}
+              
+            />
+          </Box>
+          <Stack>
+            <Text
+              color={"green.500"}
+              textTransform={"uppercase"}
+              fontWeight={800}
+              fontSize={"sm"}
+              letterSpacing={1.1}
+            >
+              <BlogCatogery data={categories}/>
+            </Text>
+            <Heading
+              color={useColorModeValue("gray.700", "white")}
+              fontSize={"2xl"}
+              fontFamily={"body"}
+            >
+              {title}
+            </Heading>
+          </Stack>
+          <Stack mt={6} direction={"row"} spacing={4} align={"center"} >
+            <Avatar
+              src={author.picture}
+              alt={"Author"}
+            />
+            <Stack direction={"column"} spacing={0} fontSize={"sm"}>
+              <Link  cursor={'pointer'} 
+            href={authorUrl} fontWeight={600}>{author.name}</Link>
+              <Text color={"gray.500"}><Date dateString={date}/> · 6min read</Text>
+            </Stack>
+          </Stack>
+        </Box>
+      </Center>
+      </NextLink>
+  );
 }
