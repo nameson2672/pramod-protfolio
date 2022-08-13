@@ -14,7 +14,6 @@ export default function Index({ allPosts, preview }) {
   console.log(allPosts);
   return (
     <>
-      <Layout preview={preview}>
         <Head>
           <title>Blogs by Parmod</title>
         </Head>
@@ -33,9 +32,6 @@ export default function Index({ allPosts, preview }) {
           ))
           }
           </Grid>
-          
-          {morePosts.length > 0 && <MoreStories posts={morePosts} />}
-      </Layout>
     </>
   )
 }
