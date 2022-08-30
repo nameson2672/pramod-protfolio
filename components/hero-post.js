@@ -24,7 +24,8 @@ export default function HeroPost({
   excerpt,
   author,
   slug,
-  categories
+  categories,
+  readTime
 }) {
   const authorUrl = "author/"+ author.slug.current
   let url = imageBuilder(coverImage).url();
@@ -86,7 +87,7 @@ export default function HeroPost({
             <Stack direction={"column"} spacing={0} fontSize={"sm"}>
               <Link  cursor={'pointer'} 
             href={authorUrl} fontWeight={600}>{author.name}</Link>
-              <Text color={"gray.500"}><Date dateString={date}/> · 6min read</Text>
+              <Text color={"gray.500"}><Date dateString={date}/> · {readTime===0?1:readTime}min read</Text>
             </Stack>
           </Stack>
         </Box>

@@ -11,7 +11,6 @@ import { Container } from '@chakra-ui/react'
 export default function Index({ allPosts, preview }) {
   const heroPost = allPosts[0]
   const morePosts = allPosts.slice(1)
-  console.log(allPosts);
   return (
     <>
         <Head>
@@ -28,10 +27,12 @@ export default function Index({ allPosts, preview }) {
             slug={currentPost.slug}
             excerpt={currentPost.excerpt}
             categories={currentPost.categories}
+            readTime={currentPost.estimatedReadingTime}
           />
           ))
           }
           </Grid>
+          
     </>
   )
 }

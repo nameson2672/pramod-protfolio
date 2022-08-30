@@ -1,10 +1,10 @@
 import React from "react";
-import { chakra, Box, useColorModeValue, Icon, Image } from "@chakra-ui/react";
+import { chakra, Box, useColorModeValue, Icon, Image, Button } from "@chakra-ui/react";
 
 const Choc = () => {
   const bg = useColorModeValue("white", "gray.800");
   return (
-    <Box pos="relative" overflow="hidden" bg={bg} mt={10}>
+    <Box pos="relative" overflow="hidden" bg={bg} mt={10} fontFamily="Poppins">
       <Box maxW="7xl" mx="auto">
         <Box
           pos="relative"
@@ -53,14 +53,14 @@ const Choc = () => {
                 _dark={{ color: "white" }}
               >
                 <chakra.span display={{ base: "block", xl: "inline" }}>
-                  Data to enrich your{" "}
+                  Blogs to enrich your{" "}
                 </chakra.span>
                 <chakra.span
                   display={{ base: "block", xl: "inline" }}
-                  color="brand.600"
-                  _dark={{ color: "brand.400" }}
+                  color="blue.600"
+                  _dark={{ color: "green.400" }}
                 >
-                  online business
+                  Personal Growth
                 </chakra.span>
               </chakra.h1>
               <chakra.p
@@ -70,9 +70,8 @@ const Choc = () => {
                 mx={{ sm: "auto", lg: 0 }}
                 color="gray.500"
               >
-                Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui
-                lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat
-                fugiat aliqua.
+                To help people understand topic in a new clear way. And to
+                englight people by the power of blogs.
               </chakra.p>
               <Box
                 mt={{ base: 5, sm: 8 }}
@@ -81,43 +80,10 @@ const Choc = () => {
                 fontWeight="extrabold"
                 fontFamily="fantasy"
               >
-                <Box rounded="full" shadow="md">
-                  <chakra.a
-                    w="full"
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center"
-                    border="solid 1px transparent"
-                    fontSize={{ base: "md", md: "lg" }}
-                    rounded="md"
-                    color="white"
-                    bg="brand.600"
-                    _hover={{ bg: "brand.700" }}
-                    px={{ base: 8, md: 10 }}
-                    py={{ base: 3, md: 4 }}
-                    cursor="pointer"
-                  >
-                    Get started
-                  </chakra.a>
-                </Box>
-                <Box mt={[3, 0]} ml={[null, 3]}>
-                  <chakra.a
-                    w="full"
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center"
-                    px={{ base: 8, md: 10 }}
-                    py={{ base: 3, md: 4 }}
-                    border="solid 1px transparent"
-                    fontSize={{ base: "md", md: "lg" }}
-                    rounded="md"
-                    color="brand.700"
-                    bg="brand.100"
-                    _hover={{ bg: "brand.200" }}
-                    cursor="pointer"
-                  >
-                    Live demo
-                  </chakra.a>
+                <Box  shadow="xl">
+                  <Button colorScheme="blue" _dark={{ color: "green.400" }} variant='outline' size="lg" fontFamily={"Poppins"}>
+                    Contact Me
+                  </Button>
                 </Box>
               </Box>
             </Box>

@@ -1,26 +1,28 @@
-import Avatar from '../components/avatar'
+import AvatarComp from '../components/avatar'
 import Date from '../components/date'
 import CoverImage from '../components/cover-image'
-import PostTitle from '../components/post-title'
+import { Container, Text, Image, Flex, Box } from '@chakra-ui/react'
 import {imageBuilder} from '../lib/sanity'
 export default function PostHeader({ title, coverImage, date, author }) {
   return (
-    <>
-      <PostTitle>{title}</PostTitle>
-      <div className="hidden md:block md:mb-12">
-        <Avatar name={author?.name} picture={author?.picture} />
-      </div>
-      <div className="mb-8 md:mb-16 -mx-5 sm:mx-0">
-        <CoverImage title={title} imageObject={coverImage} url={coverImage} />
-      </div>
-      <div className="max-w-2xl mx-auto">
-        <div className="block md:hidden mb-6">
-          <Avatar name={author?.name} picture={author?.picture} />
-        </div>
-        <div className="mb-6 text-lg">
-          <Date dateString={date} />
-        </div>
-      </div>
-    </>
+    <Container centerContent maxW={["sm", "md", "8xl"]}>
+      
+        <Text
+          w={"inherit"}
+          align={"center"}
+          fontWeight={"extrabold"}
+          fontSize={["large", "2xl", "4xl"]}
+        >
+          {title}
+        </Text>
+        <Flex m={"4"} centerContent>
+          <Text>- <Date dateString={date} /> </Text>
+        </Flex>
+        <AvatarComp name={author?.name} picture={author?.picture} slug={author?.slug}/>
+        <Box my={"4"}>
+          <Image alt={title} src={imageBuilder(coverImage).width(1240).height(540).url()} fit={"cover"} />
+        </Box>
+      
+    </Container>
   )
 }

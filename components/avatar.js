@@ -1,8 +1,10 @@
-export default function Avatar({ name, picture }) {
+import { Link, Flex, Avatar } from "@chakra-ui/react"
+export default function AvatarComp({ name, picture, slug }) {
+  const authorUrl = "author/"+ slug.current
   return (
-    <div className="flex items-center">
-      <img src={picture} className="w-12 h-12 rounded-full mr-4" alt={name} />
-      <div className="text-xl font-bold">{name}</div>
-    </div>
+    <Flex centerContaint justifyContent={"center"} alignItems={"center"}>
+      <Avatar src={picture} alt={name} />
+      <Link mx={"2"} cursor={'pointer'} href={authorUrl} fontWeight={600}>{name}</Link>
+    </Flex>
   )
 }

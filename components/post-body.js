@@ -1,10 +1,11 @@
-import markdownStyles from "./markdown-styles.module.css";
+import { Container } from "@chakra-ui/react";
 import { PortableText } from "@portabletext/react";
 
 export default function PostBody({ content }) {
   return (
-    <div className="max-w-2xl mx-auto" className={markdownStyles.markdown}>
+    <Container mx={"auto"} maxW={["25em", "2xl", "4xl"]} className="MarkdownContainer">     
       <PortableText value={content} />
-    </div>
+    </Container>
+    
   );
 }

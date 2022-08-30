@@ -40,6 +40,11 @@ const NavBar = () => {
                   About
                 </Button>
               </NextLink>
+              <NextLink href="/posts" passHref scroll={false}>
+                <Button m={["1", "2"]} variant="ghost">
+                  Blogs
+                </Button>
+              </NextLink>
             </Box>
             <IconButton
               onClick={onOpen}
