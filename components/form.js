@@ -29,19 +29,30 @@ export default function Form({_id}) {
   const toast = useToast()
   const onSubmit = async data => {
     setIsSubmitting(true)
-    let response
+    let result
     setFormData(data)
     try {
-      response = await fetch('/api/createComment', {
+      await fetch('/api/createComment', {
         method: 'POST',
         body: JSON.stringify(data),
         type: 'application/json'
+      }).then(response => response.json())
+      .then(response => result = response)
+      .catch(error => {
+        setFormData(err)
+        setGotError(true);
       })
-      setIsSubmitting(false)
+      console.log(result);
+      if(result.sucess){
+        setIsSubmitting(false)
       setHasSubmitted(true)
+      } else{
+        setFormData(err)
+        setGotError(true);
+      }
+      
     } catch (err) {
-      setFormData(err)
-      setGotError(true);
+      
     }
   }
 
