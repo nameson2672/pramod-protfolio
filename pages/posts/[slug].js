@@ -12,6 +12,8 @@ import Head from "next/head";
 import { CMS_NAME } from "../../lib/constants";
 import Form from "../../components/form";
 import { chakra, Grid, Container } from "@chakra-ui/react";
+import { getAuthers } from '../../lib/api'
+import {getAuthersData} from '../../lib/api';
 
 export default function Post({ post, morePosts, preview }) {
   const router = useRouter();
