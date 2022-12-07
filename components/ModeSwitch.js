@@ -7,7 +7,6 @@ import dynamic from "next/dynamic";
 
 const ToggleMode = () => {
   const { colorMode, toggleColorMode } = useColorMode();
-  console.log(colorMode);
   return (
     <div>
       <Button onClick={toggleColorMode}>

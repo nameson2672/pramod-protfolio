@@ -42,7 +42,6 @@ export default function Form({_id}) {
         setFormData(err)
         setGotError(true);
       })
-      console.log(result);
       if(result.sucess){
         setIsSubmitting(false)
       setHasSubmitted(true)
